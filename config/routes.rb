@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :student_details
+  devise_for :students, controllers: {
+    registrations: "students/registrations",
+    sessions: "students/sessions"
+  }
   devise_for :custom_users, controllers: {
     registrations: "custom_users/registrations",
     sessions: "custom_users/sessions"

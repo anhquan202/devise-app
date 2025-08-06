@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :custom_users, controllers: {
+    registrations: "custom_users/registrations",
+    sessions: "custom_users/sessions"
+  }
+
   devise_for :users
   resources :products
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

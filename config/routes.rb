@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :user_confirmables, controllers: {
+    registrations: "user_confirmables/registrations",
+    sessions: "user_confirmables/sessions",
+    confirmations: "user_confirmables/confirmations"
+  }
   resources :student_details
   devise_for :students, controllers: {
     registrations: "students/registrations",

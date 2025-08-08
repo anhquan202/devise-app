@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :categories
+  resources :brands
   devise_for :user_confirmables, controllers: {
     registrations: "user_confirmables/registrations",
     sessions: "user_confirmables/sessions",
@@ -13,9 +15,17 @@ Rails.application.routes.draw do
     registrations: "custom_users/registrations",
     sessions: "custom_users/sessions"
   }
-
+  resources :custom_users, only: [ :index ]
   devise_for :users
-  resources :products
+  # resources :products
+
+  resources :products do
+    collection do
+      get "new_full", to: "products#new_full"
+      post "create_full", to: "products#create_full"
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

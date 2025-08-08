@@ -1,0 +1,30 @@
+<div class="container mx-auto px-4 py-6">
+  <h1 class="text-2xl font-semibold mb-6">Danh sách người dùng</h1>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full border border-gray-200 rounded-lg shadow-md">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-2 text-left">Email</th>
+          <th class="px-4 py-2 text-left">Họ</th>
+          <th class="px-4 py-2 text-left">Tên</th>
+          <th class="px-4 py-2 text-left">Số điện thoại</th>
+          <th class="px-4 py-2 text-left">Địa chỉ</th>
+          <th class="px-4 py-2 text-left">Ngày tạo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @custom_users.each do |user| %>
+          <tr class="border-t hover:bg-gray-50">
+            <td class="px-4 py-2"><%= user.email %></td>
+            <td class="px-4 py-2"><%= user.last_name %></td>
+            <td class="px-4 py-2"><%= user.first_name %></td>
+            <td class="px-4 py-2"><%= user.phone_number %></td>
+            <td class="px-4 py-2"><%= user.address %></td>
+            <td class="px-4 py-2"><%= user.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

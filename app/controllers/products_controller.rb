@@ -15,6 +15,20 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+  def new_full
+    @product_form = ProductFullCreateInformation.new
+  end
+
+  def create_full
+    @product_form = ProductFullCreateInformation.new(product_full_create_information_params)
+
+    if @product_form.save
+      redirect_to @product, notice: "Product was successfully created."
+    else
+      render :new_full
+    end
+  end
+
   # GET /products/1/edit
   def edit
   end
@@ -65,6 +79,12 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.fetch(:product, {})
+      params.require(:product).permit(:product_name, :price, :quantity, :unit, :category_id)
+    end
+
+    def product_full_create_information_params
+      params.require(:product_full_create_information).permit(
+        :product_name, :price, :quantity, :unit, :category_name, :brand_name
+      )
     end
 end
